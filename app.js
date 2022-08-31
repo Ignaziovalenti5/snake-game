@@ -14,7 +14,7 @@ let snake = []
 let food = []
 let startPos = 40
 let partDim = 20
-let direction = 'right'
+let direction
 
 let start = false
 let timeRun = 70
@@ -25,6 +25,7 @@ function snakeInit() {
     snake = []
     score = 0
     scoreBoard.innerHTML = score
+    direction = 'right'
 
     ctx.clearRect(0, 0, boardW, boardH)
     ctx.fillStyle = '#257525'
@@ -63,27 +64,28 @@ window.addEventListener('keydown', (e) => {
     switch (e.key) {
 
         case 'ArrowUp':
-            if (direction == 'right' || direction == 'left') {
+            if (direction != 'down') {
                 direction = 'up'
             }
             break;
 
         case 'ArrowDown':
-            if (direction == 'right' || direction == 'left') {
+            if (direction != 'up') {
                 direction = 'down'
             }
             break;
 
         case 'ArrowLeft':
-            if (direction == 'up' || direction == 'down') {
+            if (direction != 'right') {
                 direction = 'left'
             }
             break;
 
         case 'ArrowRight':
             
-            if (direction == 'up' || direction == 'down' || direction == 'right') {
+            if (direction != 'left') {
                 direction = 'right'
+
                 if (start == false) {
                     int = setInterval(() => { moveSnake(direction) }, timeRun);
                     start = true
