@@ -12,20 +12,19 @@ let boardW = snakeBoard.clientWidth
 let boardH = snakeBoard.clientHeight
 let snake = []
 let food = []
-let startPos = 40
 let partDim = 20
 let direction
 
 let start = false
 let timeRun = 70
 
-var int
 
 function snakeInit() {
     snake = []
     score = 0
     scoreBoard.innerHTML = score
     direction = 'right'
+    let startPos = 40
 
     ctx.clearRect(0, 0, boardW, boardH)
     ctx.fillStyle = '#257525'
@@ -83,14 +82,15 @@ window.addEventListener('keydown', (e) => {
 
         case 'ArrowRight':
             
+            if (start == false) {
+                int = setInterval(() => { moveSnake(direction) }, timeRun);
+                start = true
+                instruction.style.display = 'none'
+            }
+
             if (direction != 'left') {
                 direction = 'right'
 
-                if (start == false) {
-                    int = setInterval(() => { moveSnake(direction) }, timeRun);
-                    start = true
-                    instruction.style.display = 'none'
-                }
             }
             break;
 
