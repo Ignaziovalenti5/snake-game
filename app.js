@@ -60,6 +60,7 @@ function randomFood() {
 
 
 window.addEventListener('keydown', (e) => {
+
     switch (e.key) {
 
         case 'ArrowUp':
@@ -82,7 +83,7 @@ window.addEventListener('keydown', (e) => {
 
         case 'ArrowRight':
             
-            if (start == false) {
+            if (!start) {
                 int = setInterval(() => { moveSnake(direction) }, timeRun);
                 start = true
                 instruction.style.display = 'none'
@@ -90,13 +91,13 @@ window.addEventListener('keydown', (e) => {
 
             if (direction != 'left') {
                 direction = 'right'
-
             }
             break;
 
         default:
             break;
     }
+
 })
 
 
@@ -117,6 +118,7 @@ function moveSnake(direction) {
                 ctx.clearRect(snakeTail.x, snakeTail.y, snakeTail.w, snakeTail.h)
                 snake.shift()
             }
+            
             break;
         case 'down':
             ctx.fillRect(snakeHead.x, snakeHead.y + partDim, partDim, partDim)
@@ -171,6 +173,7 @@ function moveSnake(direction) {
             collapse()
         }
     }
+
 }
 
 
@@ -181,6 +184,7 @@ function collapse() {
         bestScore = score
         lastScoreBoard.innerHTML = bestScore
     }
+
     start = false
     instruction.style.display = 'block'
     snakeInit()
